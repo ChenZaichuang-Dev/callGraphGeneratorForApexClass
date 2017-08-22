@@ -1,0 +1,28 @@
+{
+  "name": "js-form-validation-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
+  },
+  "scripts": {
+    "jslint": "./node_modules/.bin/jslint test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChenZaichuang/js-form-validation-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChenZaichuang/js-form-validation-practice/issues"
+  },
+  "homepage": "https://github.com/ChenZaichuang/js-form-validation-practice#readme",
+  "dependencies": {
+    "jslint": "^0.10.3"
+  }
+}
