@@ -7,7 +7,7 @@ function validateCallFunc(inputString , funcName){
 	}
 	var stringBeforeFuncName = inputString.substring(index - 1 , index) + inputString.substring(index + funcName.length , index + funcName.length + 2);
 	//.log("stringBeforeFuncName = " , stringBeforeFuncName);
-	var regularExpress = /\W\ *\(/;
+	var regularExpress = /[^\.\w] *\(/;
 	if(stringBeforeFuncName.match(regularExpress) !== null){
 		//.log("here2");
 		return true;
