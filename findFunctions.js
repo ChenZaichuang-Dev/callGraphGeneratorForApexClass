@@ -1,17 +1,17 @@
 function findFunctions(inputString){
-    var regularExpress = /\s((public)|(private)|(webservice)|(global))\ ([^\(\)]+\ )*(\w+)\ *\([^\(\)]*\)\ *\s*\{/gi;
+    var regularExpress = /\s((public)|(private)|(webservice)|(global))\ +((?!class\ )[^\(\)\ \{\}]+\ +)*(\w+)\ *\([^\(\)]*\)\s*\{/gi;
     // var regularExpress = /(.*)\n/g;
 	var matchResult = inputString.match(regularExpress);
 
 
 	// console.log(matchResult);
-	var regularExpress2 = /\s((public)|(private)|(webservice)|(global))\ ([^\(\)]+\ )*(\w+)\ *\([^\(\)]*\)\ *\s*\{/i;
+	var regularExpress2 = /\s((public)|(private)|(webservice)|(global))\ ((?!class\ )[^\(\)]+\ )*(\w+)\ *\([^\(\)]*\)\ *\s*\{/i;
 	var funcItemManager = [];
 	matchResult.forEach(function(item){
 		var funcContent = findEndOfFunction(inputString , inputString.indexOf(item) + item.length);
 		var funNameMatchResult = item.match(regularExpress2);
 		// console.log(funNameMatchResult);
-		// console.log(funNameMatchResult[5]);
+		// console.log(funNameMatchResult[7]);
 		var funObj = new funcItem(funNameMatchResult[7] , funcContent);
 		funcItemManager.push(funObj);
 		// console.log(funcContent);
@@ -32,12 +32,7 @@ function findFunctions(inputString){
 	});
 	console.log("@@@@@:" , funcItemManager);
 
-	// funcItemManager.forEach(function(funcObj){
-	// 	if(validateCallFunc(funcItemManager[0].funcContent , funcObj.name)){
-	// 		funcItemManager[0].addChild(funcObj);
-	// 		funcObj.addFarther(funcItemManager[0]);
-	// 	}
-	// });
+
 	// console.log("!!!!!:" , funcItemManager[0]);
 	// showFuncObj(funcItemManager[0] , 0);
 
@@ -77,12 +72,14 @@ function findFunctions(inputString){
 function showFuncObj(funcObj , initNum){
 	var i = initNum;
 	var preString = '';
+	var initNumTemp = initNum;
 	while(i--){
 		preString = preString + '---';
 		// console.log("\t");
 	}
+	initNum++;
 	console.log('' + preString + funcObj.name + ":\n");
 	funcObj.child.forEach(function(item){
-		showFuncObj(item , ++initNum)
+		showFuncObj(item , initNum)
 	});
 }
